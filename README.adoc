@@ -1,7 +1,7 @@
 = Chasm - Java assembler and disassembler using S-expressions
 
-Chasm can disassemble `*.class` files and `*.jar` files and output assembly in s-expression form, which is easy to parse.
-Furthermore the main use case is to read s-expression assembly files and output `*.class` or `*.jar` files.
+Chasm can disassemble `{asterisk}.class` files and `{asterisk}.jar` files and output assembly in s-expression form, which is easy to parse.
+Furthermore the main use case is to read s-expression assembly files and output `{asterisk}.class` or `{asterisk}.jar` files.
 Chasm uses the de-facto standard library ow2 ASM for bytecode generation.
 
 [source,scheme]
