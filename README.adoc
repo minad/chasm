@@ -1,0 +1,48 @@
+= Chasm - Java assembler and disassembler using S-expressions
+
+Chasm uses the de-facto standard library ow2 ASM for bytecode generation.
+
+[source,scheme]
+----
+(class 53 (final public super) chasm/Main null java/lang/Object ()
+ (source "Main.java" null)
+ (inner-class chasm/Server$Command chasm/Server Command (abstract interface public static))
+ (inner-class java/lang/invoke/MethodHandles$Lookup java/lang/invoke/MethodHandles Lookup (final public static))
+ (method (public static) main "([Ljava/lang/String;)V" null (java/io/IOException)
+  (code
+   (label L0)
+   (line 13 L0)
+   (invokedynamic run "()Lchasm/Server$Command;"
+    (H invokestatic java/lang/invoke/LambdaMetafactory metafactory
+     "(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;" false)
+    ((T "(Ljava/nio/file/Path;[Ljava/lang/String;Ljava/io/PrintStream;)V")
+     (H invokestatic chasm/Main run
+      "(Ljava/nio/file/Path;[Ljava/lang/String;Ljava/io/PrintStream;)V" false)
+     (T "(Ljava/nio/file/Path;[Ljava/lang/String;Ljava/io/PrintStream;)V")))
+   (aload 0)
+   (invokestatic chasm/Server main "(Lchasm/Server$Command;[Ljava/lang/String;)V")
+   (label L1)
+   (line 14 L1)
+   (return)
+   (label L2)
+   (local args "[Ljava/lang/String;" null L0 L2 0)
+   (maxs 2 1)))
+...
+----
+
+See link:example.chasm[] for the full example.
+
+== Quick start
+
+1. Build with `gradle`.
+2. Disassemble class/jar file to chasm with `chasm example.{class|jar} example.chasm`
+2. Assemble chasm to class/jar file with `chasm example.chasm example.{class|jar}`
+
+== Binary version
+
+The 'dist' directory contains a precompiled version which includes
+a copy of ASM. See ASM-LICENSE for the ASM license.
+
+== License
+
+MIT (c) 2018 Daniel Mendler

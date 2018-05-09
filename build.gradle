@@ -1,0 +1,61 @@
+plugins {
+  id "application"
+  id "checkstyle"
+}
+
+dependencies {
+  compile "org.ow2.asm:asm:[6.1.1,)"
+  compile "org.ow2.asm:asm-util:[6.1.1,)"
+  compile "org.ow2.asm:asm-tree:[6.1.1,)"
+  testCompile "junit:junit:[4,)"
+}
+
+mainClassName = "chasm.Main"
+
+checkstyle {
+  toolVersion "8.9"
+  configFile = file("checkstyle.xml")
+}
+
+repositories {
+  mavenCentral()
+}
+
+gradle.projectsEvaluated {
+  tasks.withType(JavaCompile) {
+    options.compilerArgs << "-Xlint:all"
+  }
+}
+
+jar {
+  preserveFileTimestamps = false
+  reproducibleFileOrder = true
+  manifest {
+    attributes(
+      "Main-Class": "$mainClassName"
+    )
+  }
+  // Create a fat jar
+  from {
+    configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+  }
+}
+
+distTar.enabled = false
+installDist.destinationDir = file("dist")
+
+defaultTasks "build", "check", "installDist"
+
+// Remove asm libs from distribution, since they are included in the fat jar
+distributions {
+  main {
+    contents {
+      exclude('**/asm*.jar')
+    }
+  }
+}
+
+// Remove asm libs from start script classpath
+startScripts {
+  classpath  = files('$APP_HOME/lib/chasm.jar')
+}
