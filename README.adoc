@@ -1,8 +1,10 @@
 = Chasm - Java assembler and disassembler using S-expressions
 
-Chasm can disassemble `{asterisk}.class` files and `{asterisk}.jar` files and output assembly in s-expression form, which is easy to parse.
+Chasm can disassemble `{asterisk}.class` files and `{asterisk}.jar` files and output assembly in s-expression form.
 Furthermore the main use case is to read s-expression assembly files and output `{asterisk}.class` or `{asterisk}.jar` files.
-Chasm uses the de-facto standard library ow2 ASM for bytecode generation.
+The s-expression syntax is both easy to parse and easy to generate.
+Chasm uses the de-facto standard library ow2 ASM for bytecode generation. Since Chasm is only a minimal syntax on top of
+ASM it is easy to keep it up to date with the current bytecode standard.
 
 [source,scheme]
 ----
@@ -48,3 +50,17 @@ a copy of ASM. See ASM-LICENSE for the ASM license.
 == License
 
 MIT (c) 2018 Daniel Mendler
+
+== Related projects
+
+* http://asm.ow2.io/[ObjectWeb ASM]
+* https://wiki.openjdk.java.net/display/CodeTools/asmtools[jdk asmtools]
+* https://github.com/achmelev/lilac[Lilac]
+** Does perfect roundtrip like chasm
+** Overall more complex and more complex syntax
+** Not based on ObjectWeb ASM
+* https://github.com/Storyyeller/Krakatau[Krakatau]
+** Written in Python
+** Includes a decompiler
+* https://github.com/davidar/jasmin[Jasmin]
+* https://github.com/Whiley/Jasm[Whiley Jasm]
