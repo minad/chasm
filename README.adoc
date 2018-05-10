@@ -64,3 +64,5 @@ MIT (c) 2018 Daniel Mendler
 ** Includes a decompiler
 * https://github.com/davidar/jasmin[Jasmin]
 * https://github.com/Whiley/Jasm[Whiley Jasm]
+* http://www.judoscript.org/articles/jamaica.html[Jamaica]
+* https://commons.apache.org/proper/commons-bcel/[BCEL]
