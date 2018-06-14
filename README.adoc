@@ -45,11 +45,15 @@ See link:example.chasm[] for the full example.
 == Binary version
 
 The 'dist' directory contains a precompiled version which includes
-a copy of ASM. See ASM-LICENSE for the ASM license.
+a copy of ASM.
 
 == License
 
 MIT (c) 2018 Daniel Mendler
+
+ASM: a very small and fast Java bytecode manipulation framework
+Copyright (c) 2000-2011 INRIA, France Telecom
+All rights reserved.
 
 == Related projects
 
