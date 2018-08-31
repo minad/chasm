@@ -220,7 +220,7 @@ public final class Pipeline {
         final String s = input.toString();
         if (s.endsWith(".class"))
             return bytecodeInput(input);
-        if (s.endsWith(".jar") || s.endsWith(".char"))
+        if (s.endsWith(".jar"))
             return jarInput(input);
         return new ClassParser(Files.newBufferedReader(input, StandardCharsets.UTF_8));
     }
@@ -231,7 +231,7 @@ public final class Pipeline {
         final String s = output.toString();
         if (s.endsWith(".class"))
             return bytecodeOutput(output);
-        if (s.endsWith(".jar") || s.endsWith(".char"))
+        if (s.endsWith(".jar"))
             return jarOutput(output);
         return new ClassPrinter(Files.newBufferedWriter(output, StandardCharsets.UTF_8));
     }
