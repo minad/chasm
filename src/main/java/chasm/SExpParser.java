@@ -134,6 +134,12 @@ public final class SExpParser {
         return got == Token.STR || (got == Token.SYM && strTok.equals("null"));
     }
 
+    public boolean isBoolVal() {
+        final Token got = token();
+        lastTok = got;
+        return got == Token.SYM && (strTok.equals("true") || strTok.equals("false"));
+    }
+
     private void expect(final Token tok) {
         final Token got = token();
         if (got != tok) {

@@ -344,6 +344,8 @@ public final class ClassPrinter extends ClassVisitor implements ClassOutput {
             p.sym(owner);
             p.sym(name);
             p.val(descriptor);
+            if (opcode == INVOKESTATIC && isInterface)
+                p.val(true);
             p.endLine();
         }
 

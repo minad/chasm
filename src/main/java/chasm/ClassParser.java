@@ -473,7 +473,8 @@ public final class ClassParser implements ClassInput {
                 final String owner = p.sym();
                 final String name = p.sym();
                 final String descriptor = p.strVal();
-                v.visitMethodInsn(opcode, owner, name, descriptor, opcode == INVOKEINTERFACE);
+                final boolean isInterface = opcode == INVOKEINTERFACE || (opcode == INVOKESTATIC && p.isBoolVal() && p.boolVal());
+                v.visitMethodInsn(opcode, owner, name, descriptor, isInterface);
             } else {
                 p.err("Unexpected instruction " + opName);
             }
