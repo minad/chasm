@@ -61,5 +61,9 @@ distributions {
 
 // Remove asm libs from start script classpath
 startScripts {
-  classpath  = files('$APP_HOME/lib/chasm.jar')
+  classpath = files('$APP_HOME/lib/chasm.jar:$CLASSPATH')
+  doLast {
+    def windowsScriptFile = file getWindowsScript()
+    windowsScriptFile.text = windowsScriptFile.text.replace(':$CLASSPATH', ';%CLASSPATH%')
+  }
 }

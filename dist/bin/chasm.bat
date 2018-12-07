@@ -63,7 +63,7 @@ set CMD_LINE_ARGS=%*
 :execute
 @rem Setup the command line
 
-set CLASSPATH=%APP_HOME%\lib\chasm.jar
+set CLASSPATH=%APP_HOME%\lib\chasm.jar;%CLASSPATH%
 
 @rem Execute chasm
 "%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %CHASM_OPTS%  -classpath "%CLASSPATH%" chasm.Main %CMD_LINE_ARGS%
