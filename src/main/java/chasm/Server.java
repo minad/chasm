@@ -10,8 +10,10 @@ import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public final class Server {
@@ -44,7 +46,12 @@ public final class Server {
                 final String line = in.readLine();
                 if (line != null) {
                     log.println(line);
-                    final String[] args = SPLITTER.matcher(line).results().map(r -> REPLACER.matcher(r.group()).replaceAll(" ")).toArray(String[]::new);
+
+                    final ArrayList<String> ms = new ArrayList<>();
+                    final Matcher m = SPLITTER.matcher(line);
+                    while (m.find())
+                        ms.add(m.group());
+                    final String[] args = ms.stream().map(r -> REPLACER.matcher(r).replaceAll(" ")).toArray(String[]::new);
                     if (args.length == 0)
                         throw new IllegalArgumentException("Invalid command");
                     final Path cwd = Paths.get(args[0]);
