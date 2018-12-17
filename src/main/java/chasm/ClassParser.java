@@ -361,7 +361,10 @@ public final class ClassParser implements ClassInput {
     }
 
     private void parseCodeInsn(final String opName, final MethodVisitor v, final HashMap<String, Label> labels) {
-        final int opcode = OPCODES.get(opName);
+        final Integer op = OPCODES.get(opName);
+        if (op == null)
+             p.err("Invalid opcode " + opName);
+        final int opcode = op;
         switch (opcode) {
         case LDC:
         {
