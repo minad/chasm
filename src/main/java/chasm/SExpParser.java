@@ -68,6 +68,14 @@ public final class SExpParser {
     }
 
     public double doubleVal() {
+        final Token got = token();
+        if (got == Token.SYM) {
+            if (strTok.equals("Infinity"))
+                return 1.0/0.0;
+            if (strTok.equals("NaN"))
+                return 0.0/0.0;
+        }
+        lastTok = got;
         expect(Token.FLOAT);
         return floatTok;
     }
@@ -218,6 +226,22 @@ public final class SExpParser {
                     s.append((char)c);
                     c = reader.read();
                 }
+
+                if (c == 'I') {
+                    final String inf = "Infinity";
+                    int n = 0;
+                    while (c == inf.charAt(n)) {
+                        c = reader.read();
+                        ++n;
+                        if (n == inf.length()) {
+                            lastChar = c;
+                            floatTok = -1.0/0.0;
+                            return Token.FLOAT;
+                        }
+                    }
+                    err("Invalid numeric token");
+                }
+
                 lastChar = c;
                 if (integer) {
                     intTok = new BigInteger(s.toString()).longValue();
