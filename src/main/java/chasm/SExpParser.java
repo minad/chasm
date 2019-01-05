@@ -3,6 +3,7 @@ package chasm;
 import java.io.Reader;
 import java.io.LineNumberReader;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.stream.Stream;
 
 public final class SExpParser {
@@ -219,7 +220,7 @@ public final class SExpParser {
                 }
                 lastChar = c;
                 if (integer) {
-                    intTok = Long.parseLong(s.toString());
+                    intTok = new BigInteger(s.toString()).longValue();
                     return Token.INT;
                 }
                 floatTok = Double.parseDouble(s.toString());
